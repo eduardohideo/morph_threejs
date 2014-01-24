@@ -1,0 +1,47 @@
+<script>
+var loader = new THREE.JSONLoader();
+var animation;
+
+// load the model and create everything
+loader.load('model.js', function (geometry, materials) {
+  var mesh, material;
+
+  // create a mesh
+  mesh = new THREE.SkinnedMesh(
+    geometry,
+    new THREE.MeshFaceMaterial(materials)
+  );
+
+  // define materials collection
+  material = mesh.material.materials;
+
+  // enable skinning
+  for (var i = 0; i < materials.length; i++) {
+    var mat = materials[i];
+
+    mat.skinning = true;
+  }
+
+  scene.add(mesh);
+
+  // add animation data to the animation handler
+  THREE.AnimationHandler.add(mesh.geometry.animation);
+
+  // create animation
+  animation = new THREE.Animation(
+    mesh,
+    'ArmatureAction',
+    THREE.AnimationHandler.CATMULLROM
+  );
+
+  // play the anim
+  animation.play();
+
+  render();
+});
+
+function render() {
+  animation.update(.01);
+  renderer.render(scene, camera);
+  requestAnimationFrame(render);
+}</script>
