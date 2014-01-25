@@ -43,7 +43,7 @@
 			loader.load('animations.js',function jsonReady( geometry )
 			{
 				// ATENTION: the morphTargets property must be set on the material
-				mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial({morphTargets : true}) );
+				mesh = new THREE.MorphAnimMesh( geometry, new THREE.MeshLambertMaterial({morphTargets : true}) );
 				scene.add( mesh );
 				
 				var animationDuration = 5;
