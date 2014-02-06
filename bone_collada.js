@@ -92,7 +92,7 @@ PinaCollada.rotate_camera = function(){
 PinaCollada.loop  = function(){
     requestAnimationFrame(PinaCollada.loop);    
     var delta = clock.getDelta();
-    //animation.update(delta);
+    animation.update(delta);
     PinaCollada.rotate_camera(); 
     renderer.render(scene, camera);
 }
