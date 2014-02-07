@@ -17,7 +17,18 @@ var camera =
 var animation;
 var clock = new THREE.Clock();
 var scene,renderer;
+
+function rotate_bone_range(bone_id){
+	bone_name = human.bones[bone_id].name;
+	$('#controller').append('<p>'+bone_name
+	+'<input type="range" value="0" min="-100" max="100" onchange="console.log(human.bones['+bone_id+'].rotation.x=this.value/100)">'+
+'<input type="range" value="0" min="-100" max="100" onchange="console.log(human.bones['+bone_id+'].rotation.y=this.value/100)">'
++ '<input type="range" value="0" min="-100" max="100" onchange="console.log(human.bones['+bone_id+'].rotation.z=this.value/100)">'
++'</p>');
+}
+
 function init(){
+
         var container = $('#container');
         scene = new THREE.Scene();     
         renderer = new THREE.WebGLRenderer();
@@ -37,7 +48,9 @@ function init(){
 
 function create_animation(geometry){
         human = new THREE.SkinnedMesh( geometry, new THREE.MeshLambertMaterial());
-	human.material.skinning = true;	
+	human.material.skinning = true;
+	for(index_bone=0;index_bone < human.bones.length;index_bone++)
+	    rotate_bone_range(index_bone);
         //THREE.AnimationHandler.add(geometry.animations[0]);
         scene.add( human);
 	//animation = new THREE.Animation(human,human.geometry.animations[0].name,THREE.AnimationHandler.CATMULLROM);

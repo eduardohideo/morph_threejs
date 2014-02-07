@@ -4,6 +4,7 @@
 <head>
 	<script type="text/javascript" src="../JS-libs/three.min.js"></script>
 	<script type="text/javascript" src="../JS-libs/jquery-1.10.2.min.js"></script>
+
 	
 	<script type="text/javascript" src="human_control.js"></script>
 	<script>
@@ -11,22 +12,7 @@
 </head>
 <body>
 	<div id="container" style="width:400px; height:300px;"></div>
-	<div id="controller">
-	    eixo X do bone down
-	    <input type="range" value="0" min="-100" max="100" onchange="console.log(human.bones[2].rotation.x=this.value/100)">
-	    eixo X do bone up
-	    <input type="range" value="0" min="-100" max="100" onchange="console.log(human.bones[1].rotation.x=this.value/100)">
-	<br>
-	
-	    eixo Y do bone down
-	    <input type="range" value="0" min="-100" max="100" onchange="console.log(human.bones[2].rotation.y=this.value/100)">
-	    eixo Y do bone up
-	    <input type="range" value="0" min="-100" max="100" onchange="console.log(human.bones[1].rotation.y=this.value/100)">
-	<br>
-	    eixo Z do bone down
-	    <input type="range" value="0" min="-100" max="100" onchange="console.log(human.bones[2].rotation.z=this.value/100)">
-	    eixo Z do bone up
-	    <input type="range" value="0" min="-100" max="100" onchange="console.log(human.bones[1].rotation.z=this.value/100)">
+	<div id="controller" style="height:300px;width:700px;overflow:scroll;">
 	</div>
 </body>
 </html>
