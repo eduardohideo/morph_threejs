@@ -2,6 +2,14 @@ window.onload = init;
 var WIDTH = 400,
 HEIGHT = 300;
 
+var unlock_camera = 0;
+
+var move_camera = function(){
+    if(unlock_camera == 0)
+	unlock_camera = 1;
+    else unlock_camera = 0;
+}
+
 var VIEW_ANGLE = 45,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
@@ -41,7 +49,8 @@ function init(){
         renderer.setSize(WIDTH, HEIGHT);
 	renderer.setClearColor("white",1);
         container.append(renderer.domElement);
-        
+	camera.position.set(2,2,1);    
+	camera.lookAt( scene.position );   
         loader = new THREE.JSONLoader();
         loader.load('human.js',create_animation);
      }
@@ -60,9 +69,9 @@ function create_animation(geometry){
 
 var rotate_camera = function(){
     var timer = Date.now() * 0.0005;
-    camera.position.x = Math.cos( timer ) * 4;
-    camera.position.z = Math.sin( timer ) * 4;
-    camera.position.y = 4;
+    camera.position.x = Math.cos( timer ) * 2;
+    camera.position.z = Math.sin( timer ) * 2;
+    camera.position.y = 2;
     camera.lookAt( scene.position );   
 }
 
@@ -70,6 +79,7 @@ function loop(){
     requestAnimationFrame(loop);    
     var delta = clock.getDelta();
     //animation.update(delta);
-    rotate_camera();
+    if(unlock_camera == 1)
+	rotate_camera();
     renderer.render(scene, camera);
 }
