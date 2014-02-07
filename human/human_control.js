@@ -1,6 +1,6 @@
 window.onload = init;        
-var WIDTH = 400,
-HEIGHT = 300;
+var WIDTH = 1000,
+HEIGHT = 500;
 
 var unlock_camera = 0;
 
